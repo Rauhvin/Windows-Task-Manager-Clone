@@ -16,7 +16,7 @@
 
         <UniformGrid Grid.Row="1" Rows="1" Background="GhostWhite">
             <Button Content="Performance" Margin="5" Height="40" Click="Button_Click"/>
-            <Button Content="Services" Margin="5" />
+            <Button Content="Services" Margin="5" Click="Button_Click_1" />
             <Button Content="Info" Margin="5"  BorderBrush="AliceBlue"/>
         </UniformGrid>
         

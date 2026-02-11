@@ -28,5 +28,11 @@ namespace Task_Manager
             PerformanceView performanceView = new PerformanceView();
             Frame.Navigate(performanceView);
         }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            ProcessesView processesView = new ProcessesView();
+            Frame.Navigate(processesView);
+        }
     }
 }
