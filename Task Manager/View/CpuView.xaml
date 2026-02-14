@@ -1,0 +1,68 @@
+﻿<UserControl x:Class="Task_Manager.CpuView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Task_Manager"
+             xmlns:lvc="clr-namespace:LiveChartsCore.SkiaSharpView.WPF;assembly=LiveChartsCore.SkiaSharpView.WPF"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid Margin="16">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="0" Margin="0,0,0,16">
+            <TextBlock Text="CPU" Style="{StaticResource MaterialDesignHeadline5TextBlock}" FontWeight="Bold"/>
+            <TextBlock Text="{Binding Name}" Style="{StaticResource MaterialDesignBody1TextBlock}"/>
+        </StackPanel>
+
+        <materialDesign:Card Grid.Row="1" materialDesign:ElevationAssist.Elevation="Dp2" Padding="10">
+            <lvc:CartesianChart Series="{Binding Series}" XAxes="{Binding XAxes}"/>
+        </materialDesign:Card>
+
+        <Grid Grid.Row="2" Margin="0,20,0,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="3*"/>
+            </Grid.ColumnDefinitions>
+
+            <materialDesign:Card Grid.Column="0" Margin="0,0,8,0" Padding="16" Background="{DynamicResource PrimaryHueMidBrush}" Foreground="{DynamicResource PrimaryHueMidForegroundBrush}">
+                <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <TextBlock Text="Usage" HorizontalAlignment="Center" Style="{StaticResource MaterialDesignBody2TextBlock}"/>
+                    <TextBlock Text="{Binding Usage, StringFormat={}{0}%}" FontSize="48" FontWeight="Light" HorizontalAlignment="Center"/>
+                </StackPanel>
+            </materialDesign:Card>
+
+            <materialDesign:Card Grid.Column="1" Margin="8,0,0,0" Padding="16">
+                <UniformGrid Columns="2">
+                    <StackPanel Margin="5">
+                        <TextBlock Text="Cores: " Style="{StaticResource MaterialDesignCaptionTextBlock}" Opacity=".6"/>
+                        <TextBlock Text="{Binding Cores}" Style="{StaticResource MaterialDesignHeadline6TextBlock}"/>
+                    </StackPanel>
+
+                    <StackPanel Margin="5">
+                        <TextBlock Text="Threads: " Style="{StaticResource MaterialDesignCaptionTextBlock}" Opacity=".6"/>
+                        <TextBlock Text="{Binding Threads}" Style="{StaticResource MaterialDesignHeadline6TextBlock}"/>
+                    </StackPanel>
+
+                    <StackPanel Margin="5">
+                        <TextBlock Text="L2 Cache: " Style="{StaticResource MaterialDesignCaptionTextBlock}" Opacity=".6"/>
+                        <TextBlock Text="{Binding L2Cache}" Style="{StaticResource MaterialDesignHeadline6TextBlock}"/>
+                    </StackPanel>
+
+                    <StackPanel Margin="5">
+                        <TextBlock Text="L3 Cache: " Style="{StaticResource MaterialDesignCaptionTextBlock}" Opacity=".6"/>
+                        <TextBlock Text="{Binding L3Cache}" Style="{StaticResource MaterialDesignHeadline6TextBlock}"/>
+                    </StackPanel>
+
+                </UniformGrid>
+            </materialDesign:Card>
+            
+        </Grid>
+        
+    </Grid>
+</UserControl>

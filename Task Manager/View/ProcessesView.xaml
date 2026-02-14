@@ -1,0 +1,106 @@
+﻿<UserControl x:Class="Task_Manager.ProcessesView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Task_Manager"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+
+    <Grid Margin="16">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0" Margin="0,0,0,16">
+            <TextBlock Text="Processes" Style="{StaticResource MaterialDesignHeadline4TextBlock}" VerticalAlignment="Center"/>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center">
+                <materialDesign:Chip Content="{Binding CpuUsage, StringFormat={}CPU: {0}%}"
+                                     IconBackground="{DynamicResource MaterialDesign.Brush.Primary}"
+                                     Margin="4,0">
+                    <materialDesign:Chip.Icon>
+                        <materialDesign:PackIcon Kind="Cpu64Bit"/>
+                    </materialDesign:Chip.Icon>
+                </materialDesign:Chip>
+                <materialDesign:Chip Content="{Binding RamUsage, StringFormat={}RAM: {0}%}"
+                     IconBackground="{DynamicResource MaterialDesign.Brush.Primary}"
+                     Margin="4,0">
+                    <materialDesign:Chip.Icon>
+                        <materialDesign:PackIcon Kind="Memory"/>
+                    </materialDesign:Chip.Icon>
+                </materialDesign:Chip>
+            </StackPanel>
+        </Grid>
+
+        <materialDesign:ColorZone Grid.Row="1" Mode="PrimaryMid" Padding="8" CornerRadius="8" materialDesign:ElevationAssist.Elevation="Dp2" Margin="0,0,01,16">
+            <Grid>
+                <StackPanel Orientation="Horizontal">
+                    <materialDesign:PackIcon Kind="InformationOutline" VerticalAlignment="Center" Margin="0,0,8,0"/>
+                    <TextBlock Text="Focused process:" VerticalAlignment="Center" Opacity=".7"/>
+                    <TextBlock Text="{Binding SelectedProcess.Name,FallbackValue='Pick procces from list...'}" FontWeight="Bold" VerticalAlignment="Center" Margin="5,0,15,0"/>
+
+                    <StackPanel Orientation="Horizontal" Visibility="{Binding SelectedProcess}">
+                        <materialDesign:PackIcon Kind="Cpu64Bit" VerticalAlignment="Center" Margin="10,0,5,0"/>
+                        <TextBlock Text="Usage: " VerticalAlignment="Center" Opacity=".7"/>
+                        <TextBlock Text="{Binding SelectedProcessCpuUsage}" FontWeight="Bold" VerticalAlignment="Center" Foreground="{DynamicResource MaterialDesign.Brush.Secondary}"/>
+                    </StackPanel>
+
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                    <Button Style="{StaticResource MaterialDesignFlatMidBgButton}" Foreground="White" Command="{Binding OpenCreateProcessWindowCommand}" ToolTip="Start new process">
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon Kind="Plus"/>
+                            <TextBlock Text="New process" Margin="8,0,0,0"/>
+                        </StackPanel>
+                    </Button>
+
+                    <Button Style="{StaticResource MaterialDesignFlatMidBgButton}" Foreground="White" Command="{Binding KillProcessCommand}" ToolTip="End process">
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon Kind="Delete"/>
+                            <TextBlock Text="Delete process" Margin="8,0,0,0"/>
+                        </StackPanel>
+                    </Button>
+                </StackPanel>
+                
+            </Grid>
+        </materialDesign:ColorZone>
+
+        <materialDesign:Card Grid.Row="2" materialDesign:ElevationAssist.Elevation="Dp1" VerticalAlignment="Stretch">
+            <DataGrid AutoGenerateColumns="False"
+                      IsReadOnly="True"
+                      ItemsSource="{Binding Processes}"
+                      SelectedItem="{Binding SelectedProcess, Mode=TwoWay}"
+                      SelectionMode="Single"
+                      HeadersVisibility="Column"
+                      materialDesign:DataGridAssist.CellPadding="12 8 8 8"
+                      materialDesign:DataGridAssist.ColumnHeaderPadding="8">
+
+                <DataGrid.Columns>
+                    <DataGridTemplateColumn Header="Name" Width="3*">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <materialDesign:PackIcon Kind="Application" Margin="0,0,8,0" Opacity=".5"/>
+                                    <TextBlock Text="{Binding Name}" VerticalAlignment="Center" FontWeight="SemiBold"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+
+                    <DataGridTextColumn Header="RAM usage"
+                                            Binding="{Binding MemoryUsage}"
+                                            Width="1*"
+                                            ElementStyle="{StaticResource MaterialDesignDataGridTextColumnStyle}"/>
+
+                </DataGrid.Columns>                
+                
+            </DataGrid>
+        </materialDesign:Card>
+        
+    </Grid>
+    
+</UserControl>

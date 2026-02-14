@@ -37,6 +37,16 @@ namespace Task_Manager.ViewModel
         private readonly ObservableCollection<double> _history = new();
         public ISeries[] Series { get; set; }
 
+        [ObservableProperty]
+        private Axis[] _xAxes = new Axis[]
+        {
+            new Axis
+            {
+                IsVisible = false
+            }
+        };
+
+
         public CpuViewModel(CpuService monitorService) 
         {
             _systemMonitorService = monitorService;

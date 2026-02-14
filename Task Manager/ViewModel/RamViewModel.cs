@@ -21,7 +21,7 @@ namespace Task_Manager.ViewModel
     public partial class RamViewModel : ObservableObject
     {
         private readonly ISystemMonitorService _systemMonitorService;
-        private RamService _amService = new RamService();
+        private RamService _ramService = new RamService();
 
         [ObservableProperty]
         private double _usage;
@@ -35,6 +35,15 @@ namespace Task_Manager.ViewModel
         private string _availableRam;
         private readonly ObservableCollection<double> _history = new();
         public ISeries[] Series { get; set; }
+
+        [ObservableProperty]
+        private Axis[] _xAxes = new Axis[]
+        {
+            new Axis
+            {
+                IsVisible = false
+            }
+        };
 
         public RamViewModel(RamService monitorService)
         {
@@ -77,7 +86,7 @@ namespace Task_Manager.ViewModel
                 double currentUsage = _systemMonitorService.GetUsage();
 
                 Usage = currentUsage;
-                AvailableRam = _amService.GetRam() + " GB";
+                AvailableRam = _ramService.GetRam() + " GB";
 
                 _history.Add(currentUsage);
 

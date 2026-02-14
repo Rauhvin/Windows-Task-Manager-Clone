@@ -1,0 +1,120 @@
+﻿<UserControl x:Class="Task_Manager.SystemInfoView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Task_Manager"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+
+    <UserControl.Resources>
+        <Style x:Key="InfoItemStyle" TargetType="HeaderedContentControl">
+            <Setter Property="Margin" Value="0,8"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="HeaderedContentControl">
+                        <StackPanel>
+                            <TextBlock Text="{TemplateBinding Header}" 
+                                   Style="{StaticResource MaterialDesignCaptionTextBlock}" 
+                                   Opacity="0.6" 
+                                   Margin="0,0,0,2"/>
+                            <ContentPresenter Content="{TemplateBinding Content}" 
+                                          TextBlock.FontWeight="Medium"/>
+                        </StackPanel>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </UserControl.Resources>
+
+    <ScrollViewer  VerticalScrollBarVisibility="Auto">
+        <StackPanel Margin="20">
+            <TextBlock Text="System info" Style="{StaticResource MaterialDesignHeadline4TextBlock}" Margin="0,0,0,20"/>
+
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <materialDesign:Card Grid.Column="0" Grid.Row="0" Margin="5" Padding="16">
+                    <StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
+                            <materialDesign:PackIcon Kind="MicrosoftWindows" Foreground="{DynamicResource MaterialDesign.Brush.Primary}"/>
+                            <TextBlock Text="System" Margin="10,0,0,0" FontWeight="Bold"/>
+                        </StackPanel>
+                        <Separator Style="{StaticResource MaterialDesignLightSeparator}"/>
+
+                        <HeaderedContentControl Header="PC Name:" Content="{Binding PcName}" Style="{StaticResource InfoItemStyle}"/>
+                        <HeaderedContentControl Header="OS Version:" Content="{Binding OsVersion}" Style="{StaticResource InfoItemStyle}"/>
+                    </StackPanel>
+                </materialDesign:Card>
+
+                <materialDesign:Card Grid.Column="1" Grid.Row="0" Margin="5" Padding="16">
+                    <StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
+                            <materialDesign:PackIcon Kind="Cpu64Bit" Foreground="{DynamicResource MaterialDesign.Brush.Primary}"/>
+                            <TextBlock Text="Components" Margin="10,0,0,0" FontWeight="Bold"/>
+                        </StackPanel>
+                        <Separator Style="{StaticResource MaterialDesignLightSeparator}"/>
+
+                        <HeaderedContentControl Header="CPU:" Content="{Binding CpuName}" Style="{StaticResource InfoItemStyle}"/>
+                        <HeaderedContentControl Header="Cores:" Content="{Binding NumberOfCores, StringFormat={}{0}}" Style="{StaticResource InfoItemStyle}"/>
+                        <HeaderedContentControl Header="Threads:" Content="{Binding NumberOfThreads, StringFormat={}{0}}" Style="{StaticResource InfoItemStyle}"/>
+                        <HeaderedContentControl Header="GPU:" Content="{Binding GpuName}" Style="{StaticResource InfoItemStyle}"/>
+                        <HeaderedContentControl Header="RAM:" Style="{StaticResource InfoItemStyle}">
+                            <TextBlock Text="{Binding TotalRam, StringFormat={}{0} GB}" FontWeight="Bold"/>
+                        </HeaderedContentControl>
+
+                    </StackPanel>
+                </materialDesign:Card>
+
+                <materialDesign:Card Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="1" Margin="5" Padding="16">
+                    <StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
+                            <materialDesign:PackIcon Kind="Harddisk" Foreground="{DynamicResource MaterialDesign.Brush.Primary}"/>
+                            <TextBlock Text="Drivers" Margin="10,0,0,0" FontWeight="Bold"/>
+                        </StackPanel>
+
+                        <ItemsControl ItemsSource="{Binding Drivers}">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <Border BorderBrush="#DDD" BorderThickness="1" CornerRadius="5" Margin="5" Padding="10" Background="White">
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="*"/>
+                                            </Grid.ColumnDefinitions>
+
+                                            <StackPanel Grid.Column="1" VerticalAlignment="Center">
+                                                <TextBlock Text="{Binding Name}" FontWeight="Bold" FontSize="14"/>
+                                                <ProgressBar Maximum="{Binding TotalSize}" Value="{Binding UsedSpace}" Height="12"/>
+                                            </StackPanel>
+                                            <StackPanel Grid.Column="0">
+                                                <HeaderedContentControl Header="Total Size:" Style="{StaticResource InfoItemStyle}">
+                                                    <TextBlock Text="{Binding TotalSize, StringFormat={}{0:N2} GB}" FontWeight="Bold"/>
+                                                </HeaderedContentControl>
+                                                <HeaderedContentControl Header="Used Space:" Style="{StaticResource InfoItemStyle}">
+                                                    <TextBlock Text="{Binding UsedSpace, StringFormat={}{0:N2} GB}" FontWeight="Bold"/>
+                                                </HeaderedContentControl>
+                                            </StackPanel>
+                                        </Grid>
+                                    </Border>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+
+                    </StackPanel>
+                </materialDesign:Card>
+                
+            </Grid>
+        </StackPanel>
+    </ScrollViewer>
+    
+</UserControl>

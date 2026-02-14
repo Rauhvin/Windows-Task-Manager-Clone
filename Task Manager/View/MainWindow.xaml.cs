@@ -21,6 +21,8 @@ namespace Task_Manager
         public MainWindow()
         {
             InitializeComponent();
+            PerformanceView performanceView = new PerformanceView();
+            Frame.Navigate(performanceView);
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -33,6 +35,12 @@ namespace Task_Manager
         {
             ProcessesView processesView = new ProcessesView();
             Frame.Navigate(processesView);
+        }
+
+        private void Button_Click_2(object sender, RoutedEventArgs e)
+        {
+            SystemInfoView systemInfoView = new SystemInfoView();
+            Frame.Navigate(systemInfoView);
         }
     }
 }

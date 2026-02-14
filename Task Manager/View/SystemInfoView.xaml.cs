@@ -12,29 +12,20 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Task_Manager.ViewModel;
 
 namespace Task_Manager
 {
     /// <summary>
-    /// Logika interakcji dla klasy PerformanceView.xaml
+    /// Logika interakcji dla klasy SystemInfoView.xaml
     /// </summary>
-    public partial class PerformanceView : UserControl
+    public partial class SystemInfoView : UserControl
     {
-        public PerformanceView()
+        public SystemInfoView()
         {
             InitializeComponent();
-        }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            CpuView cpuView = new CpuView();
-            MainFrame.Navigate(cpuView);
-        }
-
-        private void Button_Click_1(object sender, RoutedEventArgs e)
-        {
-            RamView ramView = new RamView();
-            MainFrame.Navigate(ramView);
+            SystemInfoViewModel viewModel = new SystemInfoViewModel();
+            this.DataContext = viewModel;
         }
     }
 }
