@@ -39,8 +39,8 @@
             <Grid>
                 <StackPanel Orientation="Horizontal">
                     <materialDesign:PackIcon Kind="InformationOutline" VerticalAlignment="Center" Margin="0,0,8,0"/>
-                    <TextBlock Text="Focused process:" VerticalAlignment="Center" Opacity=".7"/>
-                    <TextBlock Text="{Binding SelectedProcess.Name,FallbackValue='Pick procces from list...'}" FontWeight="Bold" VerticalAlignment="Center" Margin="5,0,15,0"/>
+                    <TextBlock Text="Selected process:" VerticalAlignment="Center" Opacity=".7"/>
+                    <TextBlock Text="{Binding SelectedProcess.Name,FallbackValue='Pick process from list...'}" FontWeight="Bold" VerticalAlignment="Center" Margin="5,0,15,0"/>
 
                     <StackPanel Orientation="Horizontal" Visibility="{Binding SelectedProcess}">
                         <materialDesign:PackIcon Kind="Cpu64Bit" VerticalAlignment="Center" Margin="10,0,5,0"/>
@@ -92,7 +92,7 @@
                     </DataGridTemplateColumn>
 
                     <DataGridTextColumn Header="RAM usage"
-                                            Binding="{Binding MemoryUsage}"
+                                            Binding="{Binding MemoryUsage, StringFormat={}{0:N2} MB}"
                                             Width="1*"
                                             ElementStyle="{StaticResource MaterialDesignDataGridTextColumnStyle}"/>
 

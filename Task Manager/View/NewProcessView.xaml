@@ -19,7 +19,7 @@
 
         <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="0,0,0,20">
             <materialDesign:PackIcon Kind="Run" Width="40" Height="40" Foreground="{DynamicResource MaterialDesign.Brush.Primary}" VerticalAlignment="Center"/>
-            <TextBlock Text="Enter name program, folder or document,and it will be open by system Windows"
+            <TextBlock Text="Enter name program, folder or document, and it will be open by system Windows"
                        Margin="15,0,0,0"
                        TextWrapping="Wrap"
                        VerticalAlignment="Center"

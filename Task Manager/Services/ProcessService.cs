@@ -1,13 +1,5 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Diagnostics;
-using System.Collections.ObjectModel;
+﻿using System.Diagnostics;
 using Task_Manager.Model;
-using System.Xml.Linq;
 
 namespace Task_Manager.Services
 {

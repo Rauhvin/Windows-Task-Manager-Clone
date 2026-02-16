@@ -1,14 +1,5 @@
-﻿using System;
-using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Controls;
-using System.Windows.Media;
+﻿using System.Collections.ObjectModel;
 using CommunityToolkit.Mvvm.ComponentModel;
-using CommunityToolkit.Mvvm.Input;
 using LiveChartsCore;
 using LiveChartsCore.SkiaSharpView;
 using LiveChartsCore.SkiaSharpView.Painting;
@@ -51,8 +42,8 @@ namespace Task_Manager.ViewModel
         {
             _systemMonitorService = monitorService;
             _name = monitorService.Info["Name"];
-            _l2Cache = monitorService.Info["L2CacheSize"];
-            _l3Cache = monitorService.Info["L3CacheSize"];
+            _l2Cache = monitorService.Info["L2CacheSize"] + " KB";
+            _l3Cache = monitorService.Info["L3CacheSize"] + " KB";
             _cores = monitorService.Info["Cores"];
             _threads = monitorService.Info["Threads"];
 

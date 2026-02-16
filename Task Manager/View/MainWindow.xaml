@@ -9,19 +9,22 @@
         mc:Ignorable="d"
         Style="{StaticResource MaterialDesignWindow}"
         Title="Task Manager" Height="650" Width="1000">
+    <Window.DataContext>
+        <vm:MainViewModel/>
+    </Window.DataContext>
+    
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="5*" x:Name="dashboard"/>
             <RowDefinition Height="0.5*" x:Name="menu"/>
         </Grid.RowDefinitions>
 
+        <ContentControl Grid.Row="0" Content="{Binding CurrentView}" />
 
         <UniformGrid Grid.Row="1" Rows="1" Background="GhostWhite">
-            <Button materialDesign:ButtonAssist.CornerRadius="10" Margin="5" Style="{StaticResource MaterialDesignRaisedButton}" Background="#673AB7" Foreground="White" Content="Performance" Click="Button_Click"/>
-            <Button Content="Services" Margin="5" materialDesign:ButtonAssist.CornerRadius="10" Style="{StaticResource MaterialDesignRaisedButton}" Background="#673AB7" Foreground="White" Click="Button_Click_1" />
-            <Button Content="Info" Margin="5" materialDesign:ButtonAssist.CornerRadius="10" Style="{StaticResource MaterialDesignRaisedButton}" Background="#673AB7" Foreground="White" Click="Button_Click_2"/>
+            <Button Content="Performace" Command="{Binding ShowPerformanceCommand}" materialDesign:ButtonAssist.CornerRadius="10" Margin="5" Style="{StaticResource MaterialDesignRaisedButton}" Background="#673AB7" Foreground="White"/>
+            <Button Content="Processes" Command="{Binding ShowProcessesCommand}" materialDesign:ButtonAssist.CornerRadius="10" Margin="5" Style="{StaticResource MaterialDesignRaisedButton}" Background="#673AB7" Foreground="White"/>
+            <Button Content="Computer Info" Command="{Binding ShowInfoCommand}" materialDesign:ButtonAssist.CornerRadius="10" Margin="5" Style="{StaticResource MaterialDesignRaisedButton}" Background="#673AB7" Foreground="White"/>
         </UniformGrid>
-
-        <Frame x:Name="Frame" Grid.Row="0" NavigationUIVisibility="Hidden"/>
     </Grid>
 </Window>

@@ -13,14 +13,13 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
-        <Frame x:Name="MainFrame" Grid.Column="1" NavigationUIVisibility="Hidden"/>
+        <ContentControl Grid.Column="1" Content="{Binding CurrentPerformanceSubView}"/>
 
         <Border Grid.Column="0" Background="GhostWhite" BorderBrush="#DDD" BorderThickness="0,0,1,0">
             <StackPanel Margin="10">
                 <TextBlock Text="Performance" Style="{StaticResource MaterialDesignHeadline6TextBlock}" Margin="10,0,10,20"/>
 
-                <Button Click="Button_Click"
-                        Style="{StaticResource MaterialDesignFlatMidBgButton}"
+                <Button Command="{Binding ShowCpuCommand}" Style="{StaticResource MaterialDesignFlatMidBgButton}"
                         materialDesign:ButtonAssist.CornerRadius="5"
                         Margin="0,5" Height="50">
                     <StackPanel Orientation="Horizontal" Width="160">
@@ -29,7 +28,7 @@
                     </StackPanel>
                 </Button>
 
-                <Button Click="Button_Click_1"
+                <Button Command="{Binding ShowRamCommand}"
                         Style="{StaticResource MaterialDesignFlatMidBgButton}"
                         materialDesign:ButtonAssist.CornerRadius="5"
                         Margin="0,5" Height="50">

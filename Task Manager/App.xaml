@@ -13,6 +13,27 @@
 
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesign2.Defaults.xaml" />
             </ResourceDictionary.MergedDictionaries>
+
+            <DataTemplate DataType="{x:Type vm:PerformanceViewModel}">
+                <local:PerformanceView />
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type vm:ProcessViewModel}">
+                <local:ProcessesView />
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type vm:SystemInfoViewModel}">
+                <local:SystemInfoView />
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type vm:CpuViewModel}">
+                <local:CpuView />
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type vm:RamViewModel}">
+                <local:RamView />
+            </DataTemplate>
+            
         </ResourceDictionary>
     </Application.Resources>
 </Application>

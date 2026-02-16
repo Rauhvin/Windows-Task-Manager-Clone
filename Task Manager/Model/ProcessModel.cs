@@ -1,6 +1,4 @@
-﻿using System.Diagnostics;
-
-namespace Task_Manager.Model
+﻿namespace Task_Manager.Model
 {
     public class ProcessModel
     {

@@ -1,16 +1,10 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Data;
-using System.Xml.Linq;
 using Task_Manager.Model;
 using Task_Manager.Services;
 
@@ -160,6 +154,7 @@ namespace Task_Manager.ViewModel
         private void OpenCreateProcessWindow()
         {
             var createWindow = new NewProcessView();
+            createWindow.DataContext = new NewProcessViewModel();
 
             createWindow.Owner = System.Windows.Application.Current.MainWindow;
             createWindow.WindowStartupLocation = WindowStartupLocation.CenterOwner;
